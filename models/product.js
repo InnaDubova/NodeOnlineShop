@@ -1,28 +1,28 @@
-const Sequalize = require("sequelize");
+const Sequelize = require("sequelize");
 
-const sequalize = require("../utilus/database")
+const sequelize = require("../utilus/database")
 
-const Product = sequalize.define("product",{
+const Product = sequelize.define("product",{
     id:{
-        type: Sequalize.INTEGER,
+        type: Sequelize.INTEGER,
         autoIncrement: true,
         allowNull:false,
         primaryKey: true
     },
     title: {
-        type: Sequalize.STRING,
+        type: Sequelize.STRING,
         allowNull: false
     },
     price: {
-        type: Sequalize.DOUBLE,
+        type: Sequelize.DOUBLE,
         allowNull: false
     },
     image: {
-        type: Sequalize.STRING,
+        type: Sequelize.STRING,
         allowNull: false
     },
     description:{
-        type: Sequalize.STRING,
+        type: Sequelize.STRING,
         allowNull:false
     }
 })

@@ -1,9 +1,9 @@
-const Sequalize = require("sequelize");
+const Sequelize = require("sequelize");
 
-const sequalize = new Sequalize("online_shop","root","",{
+const sequelize = new Sequelize("online_shop","root","",{
     host: "localhost",
     dialect: "mysql"
 })
 
-sequalize.sync();
-module.exports = sequalize;
+sequelize.sync();
+module.exports = sequelize;
