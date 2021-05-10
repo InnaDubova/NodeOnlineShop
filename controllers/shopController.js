@@ -39,6 +39,9 @@ exports.getSingleblogPage= (req,res,next) => {
      res.render("pages/single-blog");
 }
 exports.getSingleproductPage= (req,res,next) => {
+     res.render("pages/single-product");
+}
+exports.getProduct = (req,res,next ) => {
      const productId = req.params.productId;
      Product.findByPk(productId)
      .then((product) => {
