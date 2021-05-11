@@ -51,6 +51,73 @@ exports.getProduct = (req,res,next ) => {
      })
      .catch(err => console.log(err))
  }
+ exports.getNewProductPage = (req, res, next) => {
+     res.render("pages/addNewProduct.ejs");
+ }
+ exports.postNewProductPage = (req, res, next) => {
+     const title = req.body.title;
+     const price = req.body.price;
+     const image = req.body.image;
+     const description = req.body.description;
+
+     Product.create({
+          title: title,
+          price: price,
+          image: image,
+          description: description
+     })
+     .then((result) => {
+          console.log("Product created");
+          return res.redirect ("/category");
+     })
+     .catch(err => console.log(err));
+}
+exports.deleteProduct = (req,res,next) => {
+     const productId = req.params.id;
+     Product.destroy({
+          where: {
+              id: productId
+          }
+      })
+      .then((product) => {
+          res.redirect("/category");
+      })
+      .catch((err) => console.log(err));
+}
+exports.updateProduct = (req, res, next) => {
+     const id = req.params.id;
+     Product.findByPk(id)
+     .then((product) => {
+         res.render("pages/updateProduct", {
+             product: product
+         })
+     })
+     .catch(err => console.log(err));
+ }
+exports.postUpdateProduct = (req, res, next) => { 
+     const id = req.params.id;
+     const title = req.body.title;    
+     const price = req.body.price;
+     const image = req.body.image;
+     const description = req.body.description;
+
+     const newProduct = {
+         title: title,        
+         price: price,
+         image: image,
+         description: description
+     }
+ 
+     Product.update(newProduct, {
+         where: {
+             id: id
+         }
+     })
+     .then((result) => {
+         res.redirect("/category");
+     })
+     .catch(err => console.log(err));
+ }
 exports.getTrackingorderPage= (req,res,next) => {
      res.render("pages/tracking-order");
 }
